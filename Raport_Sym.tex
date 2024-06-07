@@ -1,0 +1,621 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[polish,english]{babel} % Para caracteres en español
+\usepackage[polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}	% Para caracteres en español
+\usepackage[OT2,OT4]{fontenc}
+\usepackage{comment}
+\usepackage{amsfonts}
+
+\RequirePackage[numbers]{natbib}
+\usepackage[colorlinks=true]{hyperref}
+
+  \hypersetup{
+    pdftitle={Symulacje}, %%<--To wymienić 
+    pdfauthor={Karol Cieślik},
+    colorlinks,
+    urlcolor=blue,
+    filecolor=magenta,
+    citecolor=green, 
+    linkbordercolor={1 1 1}, % set to white
+    citebordercolor={1 1 1},  % set to white
+    urlbordercolor={ 1 1 1}  % set to white
+  } 
+\RequirePackage[hyperpageref]{backref} 
+    \renewcommand*{\backref}[1]{}  
+    \renewcommand*{\backrefalt}[4]{
+       \ifcase #1 
+          No cited.
+       \or
+          Cited on p. #2.
+       \else
+          Cited on pp. #2.
+       \fi}  
+
+\usepackage{amsmath,amsthm,amsfonts,amscd}%,amssymb}
+\usepackage{multirow,booktabs}
+\usepackage[table]{xcolor}
+\usepackage{fullpage}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{calc}
+\usepackage{graphicx}%
+\usepackage{mathtools, amsthm, amssymb}
+\usepackage{listings}%
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage[margin=3cm]{geometry}
+\usepackage{floatrow}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+%%Local definition
+ \def\bbE{{\mathbb E}}
+ \def\bbN{{\mathbb N}}
+        \def\cF{{\mathcal F}}
+        \def\cH{{\mathcal H}}
+        
+        \def\R{\Re}
+				\def\bD{{\mathbf D}}
+				\def\bE{{\mathbf E}}
+        \def\bP{{\mathbf P}}
+				\def\bT{{\mathbf T}}
+
+        \def\one{{\mathbb I}}
+\lstset{ %
+    language=Arduino,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{gray},
+    morecomment=[l][\color{magenta}]{\#},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    backgroundcolor=\color{lightgray!20},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}				
+\newcommand{\bmalpha}{\boldsymbol \alpha}
+\newcommand{\bme}{\mathbf e}
+				
+\newcommand*{\doi}[1]{\href{http://dx.doi.org/#1}{doi: #1}}
+\newcommand*{\MR}[1]{\href{http://www.ams.org/mathscinet-getitem?mr=#1&return=pdf}{MR #1}}
+%\newcommand*{\ZBL}[1]{\href{http://www.zentralblatt-math.org/zmath/en/advanced/?q=an:#1&format=complete}{Zbl #1}}
+
+\title{Symulcaje Raport końcowy}
+\author{Kinga Heda, Bartosz Łuksza i Karol Cieślik}
+\date{Raport}
+
+
+\newcommand\course{MST sem. IV}	% <-- nombre del curso
+\newcommand\semester{lato 2023/2024}  % <-- semestre
+\newcommand\asgnname{2}         % <-- numero o subtítulo de la tarea
+\newcommand\yourname{}  % <-- nombre
+\newcommand{\vect}[1]{\overline{#1}} % si se quiere cambiar a vector con flecha solo hay que sustituir boldsymbol por vec.
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}	% para denotar la norma euclidiana
+\theoremstyle{definition}
+\newtheorem{definition}{Definicja}[section]
+\newtheorem{reg}{Regla}
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+\newtheorem{remark}{Komentarz}[section]
+\newtheorem{example}{Przykład}[section]
+
+
+\newtheorem{ejer}{Zadanie}[section]%{EJERCICIO}
+\newtheorem{solution}{Odp.}[section]%{Solución}
+
+\pagestyle{fancyplain}
+\headheight 32pt
+\lhead{\yourname\ \vspace{0.1cm} \\ \course}
+\chead{\textbf{\Large Raport Końcowy S-K}}
+\rhead{2024/06/05}
+\cfoot{Strona \thepage \hspace{1pt} na \pageref{LastPage} \vspace{3mm} \\ \footnotesize \textcolor{gray}{Raport opracowali Kinga Heda, Bartosz Łuksza i Karol Cieślik kurs \emph{Symulacje Komputerow.}}
+}
+\textheight 580pt
+\headsep 10pt
+\footskip 40pt
+\topmargin = 7pt
+
+
+
+\begin{document}
+\selectlanguage{polish}
+\pagenumbering{roman}
+\setcounter{page}{1} %%This command starts the numerations of pages
+\maketitle
+
+%\newpage
+
+\tableofcontents
+
+\include{Zadania/Zadania0ASKSz}
+%\include{Lecture0Z}
+
+\include{Zadania/Zadania1ASKSz}
+
+
+\include{Literatura}
+\section{Wstęp.}
+Niniejsze sprawozdanie zbierze poznane metody symulacyjne poznane na kursie.
+Całość symulacyjna była wykonana w Pythonie.\\
+
+Wykorzystane narzędzia:\\
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+from scipy.stats import arcsine
+
+\section{Zad 1.}
+\section{Zad 2.}
+\section{Zad 3.}
+W niniejscym zadaniu będziemy rozważać wykorzystanie metod Monte Carlo w metodach redukcji wariancji
+
+\subsection{Wstęp.}
+
+Metody redukcji wariancji w metodach Monte Carlo są używane, aby zwiększyć efektywność i dokładność szacowania wartości oczekiwanych. Dwie popularne metody to:\\
+\\
+Metoda odbić lustrzanych (antithetic variates),\\
+Metoda zmiennej kontrolnej (control variates).\\
+
+Wyniki Estymacji liczby $\pi$ w zależności od metody zaprezentowane są na wykresie 1.
+
+Porównanie wyników błędów oraz wariancji estymatorów każdej z metod odpowiednio na wykresach 2 i 3.
+
+\subsection{Opis Metod.}
+
+
+\textbf{Metoda odbić lustrzanych:}\\
+polega na generowaniu par zmiennych losowych, które są od siebie zależne w sposób, który zmniejsza wariancję. Przykładowo, jeśli $U$ jest losową zmienną z rozkładu jednostajnego na $[0,1]$, to zmienną lustrzaną będzie $1-U$.\\
+
+
+\textbf{Metoda zmiennej kontrolnej.}\\
+Metoda zmiennej kontrolnej polega na użyciu dodatkowej zmiennej losowej, której wartość oczekiwana jest znana, aby skorygować szacunki. Jeśli 
+Y jest naszą oryginalną zmienną losową, a 
+C jest zmienną kontrolną z wartością oczekiwaną $\mu_c $ to nowa zmienna losowa $Y' = Y -C +\mu_c$ ma mniejszą wariancję.
+
+\subsection{Metoda Monte Carlo.}
+
+Zadanie polega na obliczeniu całki:
+$$I=\int_0^1 \frac{4}{1+x^2} dx$$
+
+Ta całka reprezentuje pole pod krzywą $\frac{4}{1+x^2}$ od 0 do 1. Możemy wykorzystać metodę Monte Carlo do oszacowania tej całki poprzez generowanie losowych punktów $x$ w przedziale $[0,1]$ i obliczanie wartości funkcji w tych punktach.\\
+\\
+Zaimplementujemy to zadanie używając zarówno: 
+
+metody odbić lustrzanych(Antithetic variates), jak i 
+
+metody zmiennej kontrolnej(Control variates).
+
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=\linewidth]{wyniki.png}
+				\caption{Porównanie wyników.}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+  
+\subsection{Skrypt W pythonie.}
+\begin{lstlisting}[language=Python, caption=Skrypt do Zad 3.]
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Funkcja podcalkowa
+def f(x: np.ndarray) -> np.ndarray:
+    """
+    Funkcja podcalkowa.
+
+    Args:
+        x (np.ndarray): Array wartosci x.
+
+    Returns:
+        np.ndarray: Oblicza wartosc funkcji: 4 / (1 + x**2).
+    """
+    return 4 / (1 + x**2)
+
+
+# Monte Carlo klasyczna
+def monte_carlo_basic(n: int) -> float:
+    """
+    Monte Carlo calkowanie bez "redukcji wariancji."
+
+    Args:
+        n (int): Wielkosc proby.
+
+    Returns:
+        float: Szanowana wartosc calki.
+    """
+    x = np.random.uniform(0, 1, n)
+    return np.mean(f(x))
+
+
+# Metoda odbic lustrzanych
+def monte_carlo_antithetic(n:int) -> float:
+    """
+     Calkowanie Monte Carlo przy uzyciu: antithetic variates method.
+
+    Args:
+        n (int): Wielkosc proby.
+
+    Returns:
+        float: Szanowana wartosc calki.
+    """
+    x = np.random.uniform(0, 1, n // 2)
+    y = 1 - x
+    return np.mean((f(x) + f(y)) / 2)
+
+
+# Metoda zmiennej kontrolnej (uzyjemy funkcji liniowej jako zmiennej kontrolnej)
+def monte_carlo_control_variate(n: int) -> float:
+    """
+    Monte Carlo integration using control variates method.
+
+    Args:
+        n (int): Wielkosc proby.
+
+    Returns:
+        float: Szanowana wartosc calki.
+    """
+    x = np.random.uniform(0, 1, n)
+    control_variate = x
+    mean_control_variate = 0.5
+    y = f(x)
+    alpha = np.cov(y, control_variate)[0, 1] / np.var(control_variate)
+    return np.mean(y - alpha * (control_variate - mean_control_variate))
+
+
+# Wielkosc proby:
+n = 100000
+
+# Zastosowanie funkcji
+basic_result = monte_carlo_basic(n)
+antithetic_result = monte_carlo_antithetic(n)
+control_variate_result = monte_carlo_control_variate(n)
+
+# Wyniki
+print(f"Wynik Monte Carlo bez redukcji wariancji: {basic_result}")
+print(f"Wynik metody odbic lustrzanych: {antithetic_result}")
+print(f"Wynik metody zmiennej kontrolnej: {control_variate_result}")
+
+# Dokladna wartosc calki
+exact_value = np.pi
+
+# Liczby prob
+n_values = [10, 100, 200, 1000, 5000, 10000, 100000]
+
+# Wyniki i bledy dla kazdej z metod
+basic_results = []
+antithetic_results = []
+control_variate_results = []
+
+basic_errors = []
+antithetic_errors = []
+control_variate_errors = []
+
+for n in n_values:
+    basic_result = monte_carlo_basic(n)
+    antithetic_result = monte_carlo_antithetic(n)
+    control_variate_result = monte_carlo_control_variate(n)
+    
+    basic_error = np.abs(basic_result - exact_value)
+    antithetic_error = np.abs(antithetic_result - exact_value)
+    control_variate_error = np.abs(control_variate_result - exact_value)
+    
+    basic_results.append(basic_result)
+    antithetic_results.append(antithetic_result)
+    control_variate_results.append(control_variate_result)
+    
+    basic_errors.append(basic_error)
+    antithetic_errors.append(antithetic_error)
+    control_variate_errors.append(control_variate_error)
+
+# Wykresy bledow
+plt.figure(figsize=(12, 8))
+
+plt.plot(n_values, basic_errors, marker="o", label="Monte Carlo Basic")
+plt.plot(n_values, antithetic_errors, marker="s", label="Antithetic Variates")
+plt.plot(n_values, control_variate_errors, marker="^", label="Control Variates")
+
+plt.xscale("log")
+plt.yscale("log")
+plt.xlabel("Liczba prob")
+plt.ylabel("Blad")
+plt.title("Analiza bledu wzgledem ilosci symulacji")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Wariancje dla kazdej z metod
+basic_variance = [np.var([monte_carlo_basic(n) for _ in range(100)]) for n in n_values]
+antithetic_variance = [np.var([monte_carlo_antithetic(n) for _ in range(100)]) for n in n_values]
+control_variate_variance = [np.var([monte_carlo_control_variate(n) for _ in range(100)]) for n in n_values]
+
+# Wykresy wariancji
+plt.figure(figsize=(12, 8))
+
+plt.plot(n_values, basic_variance, marker="o", label="Monte Carlo Basic")
+plt.plot(n_values, antithetic_variance, marker="s", label="Antithetic Variates")
+plt.plot(n_values, control_variate_variance, marker="^", label="Control Variates")
+
+plt.xscale("log")
+plt.yscale("log")
+plt.xlabel("Liczba prob")
+plt.ylabel("Wariancja")
+plt.title("Analiza wariancji wzgledem ilosci symulacji")
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Tabela wynikow i bledow
+print(" ")
+print(f"{'Liczba prob':<15} {'Wynik (Basic)':<15} {'Blad (Basic)':<15} {'Wynik (Antithetic)':<20} {'Blad (Antithetic)':<20} {'Wynik (Control Variate)':<25} {'Blad (Control Variate)':<25}")
+for n, basic_result, basic_error, antithetic_result, antithetic_error, control_variate_result, control_variate_error in zip(n_values, basic_results, basic_errors, antithetic_results, antithetic_errors, control_variate_results, control_variate_errors):
+    print(f"{n:<15} {basic_result:<15.10f} {basic_error:<15.10f} {antithetic_result:<20.10f} {antithetic_error:<20.10f} {control_variate_result:<25.10f} {control_variate_error:<25.10f}")
+
+
+
+\end{lstlisting}
+
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=\linewidth]{blaw.png}
+				\caption{Wykres Błędu}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+  
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=\linewidth]{wariancja.png}
+				\caption{Porównanie Wariancji}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+  
+
+\subsection{Wnioski.}
+Szacowanie liczby $\pi$:\\
+Metoda Monte Carlo daje przybliżenie liczby $\pi$ poprzez losowanie próbek i obliczanie średniej wartości funkcji $\frac{4}{1+x^2}.$ Wyniki zależą od liczby symulacji (im więcej próbek, tym dokładniejsze oszacowanie).\\
+
+Redukcja wariancji metodą odbić lustrzanych: 
+Wprowadzenie par antytetycznych zmiennych losowych (antithetic variates) znacząco zmniejsza wariancję estymatora. Wyniki uzyskane za pomocą tej metody są bardziej stabilne i dokładniejsze dla tej samej liczby symulacji w porównaniu do standardowej metody Monte Carlo.\\
+
+Analiza błędu: 
+Wykresy pokazują, że metoda odbić lustrzanych redukuje błąd szybciej niż standardowa metoda Monte Carlo. Przy dużych liczbach symulacji i więcej metoda odbić lustrzanych daje znacznie mniejsze błędy, co widać na wykresach 2 i 3.\\
+\section{Zad 4.}
+\section{Zad 5.}
+\section{Zad 6.}
+W tym zadaniu skupimy się na symulacji procesu Wienera.
+
+\subsection{Wstęp.}
+Prawa Arcusa Sinusa, oraz Ruch Browna(Proces Wienera). \\
+
+Proces Wienera, znany również jako ruchy Browna, jest fundamentalnym modelem matematycznym w teorii probabilistycznej i analizie stochastycznej. Jego nazwa pochodzi od amerykańskiego matematyka Norberta Wienera. Proces Wienera jest używany do modelowania przypadkowych ruchów w przestrzeni i ma zastosowanie w różnych dziedzinach nauki, w tym w fizyce, finansach, biologii i inżynierii.\\
+
+Wyniki uzyskane podczas symulacji zaprezentowane są na wykresach 4-6.
+
+\subsection{Proces Wienera.}
+Matematycznie proces Wienera $\{ W(t),t\geq 0 \}$ spełnia następujące warunki:\\
+
+$W(0)=0,$\\
+W(t) - W(s) $\sim$ N(0,t - s)\  dla \ $0\leq s \geq t,$\\
+Proces $ W(t)$ \ ma \ ciągłe \ trajektorie.\\
+
+Rozkład arcsinusowy na przzedziale $[0,1]$ ma funkcję gęstości daną wzorem:
+$$p_X(x)=\frac{1}{x\sqrt{x(1-x)}}  \mathit{1} (x) ,$$
+dla $x \in (0,1).$ Jest on charakterystyczny tym, że jego wartości są skoncentrowane przy krańcach przedziału, czyli wokół 0 i 1.\\
+
+ Proces Wienera posiada własność, że różnice jego wartości w dwóch różnych momentach czasu są z rozkładu normalnego (Gaussa) ze średnią równą zero i wariancją równą różnicy czasu między tymi punktami. To pozwala na stosowanie narzędzi analizy statystycznej do badania takich procesów.
+
+\subsection{Opis Metod.}
+\textbf{Pierwsze prawo arcsinusów:}\\
+
+Twierdzenie:\\
+$$T_+= \lambda ( \{t\in [0,1] \mid W_t>0 \})\sim \arcsin,$$
+gdzie $\lambda$ to miara Lebesgue’a. Oznacza to, że czas, który proces Wienera spędza powyżej osi OX na przedziale 
+[0,1], ma rozkład arcsinusowy.\\
+
+Jeśli $W_t$ to standardowy proces Wienera na przedziale $[0,1]$, to czas, który proces spędza powyżej osi OX (czyli czas, w którym $W_t>0$), ma rozkład arcsinusowy. Rozkład arcsinusowy jest skoncentrowany przy krańcach przedziału, co oznacza, że proces Wienera spędza większość czasu albo blisko początku, albo blisko końca przedziału powyżej osi OX, rzadziej zaś w jego środkowej części.\\
+
+
+\textbf{Drugie prawo arcsinusów:}\\
+
+
+Twierdzenie:\\
+$$L = sup\{t \in [0, 1]\mid W_t = 0\} \sim \arcsin.$$ Inaczej mówiąc, ostatni moment uderzenia procesu Wienera na odcinku [0, 1] w oś OX ma rozkład arcusa sinusa.\\
+
+W kontekście procesu Wienera, $L$ jest ostatnim czasem, w którym proces $W_t$ osiąga wartość zero na przedziale [0,1]. To twierdzenie mówi, że ten ostatni czas ma rozkład arcsinusowy. Znów, ze względu na własności rozkładu arcsinusowego, ten czas jest bardziej prawdopodobny bliżej krańców przedziału niż w jego środku.\\
+
+\textbf{Trzecie prawo arcsinusów:}\\
+
+Twierdzenie:\\
+
+Niech M będzie liczbą spełniającą:
+$$W_M = sup\{W_t\mid \in [0, 1]\}, $$
+$$T_M = sup\{t \in [0,1] \mid W_t = max_s_\in_[_0_,_1_] W_s\}\sim \arcsin .$$\\
+Wtedy M $\sim \arcsin$. Oznacza to, że moment osiągnięcia maksymalnej wartości przez proces Wienera na odcinku [0, 1] ma rozkład arcusa sinusa.\\
+
+W kontekście procesu Wienera, $T_M$ jest czasem, w którym proces osiąga swoją maksymalną wartość na przedziale [0,1]. To twierdzenie mówi, że ten czas ma rozkład arcsinusowy, co oznacza, że proces Wienera ma większą tendencję do osiągania swojej maksymalnej wartości bliżej początku lub końca przedziału, niż w jego środku.\\
+
+
+
+\subsection{Sktypty w Pythonie.}
+\begin{lstlisting}[language=Python, caption=Skrypt Zad 6.]
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import arcsine
+
+# Liczba symulacji
+n_simulations = 10000
+n_steps = 1000
+t = np.linspace(0, 1, n_steps + 1)
+
+# Funkcja generujaca proces Wienera
+def generate_wiener_process(n_steps: int) -> np.ndarray:
+    """
+    Generuje Proces Wienera.
+
+    Args:
+        n_steps (int): Liczba krokow w procesie.
+
+    Returns:
+        np.ndarray: Wysymulowany proces Wienera
+    """
+    dt = 1 / n_steps
+    dW = np.random.normal(0, np.sqrt(dt), n_steps)
+    W = np.concatenate(([0], np.cumsum(dW)))
+    return W
+
+# Listy wynikowe
+T_plus = []
+L = []
+M = []
+
+# Generowanie wszystkoch jednoczesnie, ale kazda wersja odpowiednio wedlug swojej definicji
+# Symulacja procesu Wienera oraz zbieranie danych
+
+for _ in range(n_simulations):
+    # Generowanie procesu Wienera
+    W = generate_wiener_process(n_steps)
+
+    # Obliczanie T_+
+    T_plus.append(np.sum(W > 0) / n_steps)
+
+    # Znajdowanie punktow przeciecia z zerem
+    zero_crossings = np.where(np.diff(np.sign(W)))[0]
+
+    # Sprawdzenie czy istnieja punkty przeciecia z zerem
+    if zero_crossings.size > 0:
+        # Jesli istnieja, dodaj ostatni czas przeciecia z zerem przed zakonczeniem symulacji do listy L
+        L.append(t[zero_crossings[-1]])
+    else:
+        # Jesli nie istnieja, dodaj 0 do listy L
+        L.append(0)
+
+    # Dodawanie czasu osiagniecia maksimum do listy M
+    M.append(t[np.argmax(W)])
+
+# Histogramy oraz dystrybuanty empiryczne i teoretyczne
+fig, axs = plt.subplots(3, 2, figsize=(14, 7))
+
+# Histogram dla T_+
+axs[0, 0].hist(
+    T_plus, bins=50, density=True, alpha=0.6, color="coral", label="Empiryczny"
+)
+x = np.linspace(0, 1, 100)
+axs[0, 0].plot(x, arcsine.pdf(x), "r-", lw=2, label="Teoretyczny")
+axs[0, 0].set_title("Histogram T_+")
+axs[0, 0].legend()
+
+# Dystrybuanty dla T_+
+axs[0, 1].hist(
+    T_plus,
+    bins=50,
+    density=True,
+    cumulative=True,
+    alpha=0.6,
+    color="coral",
+    label="Empiryczny",
+)
+axs[0, 1].plot(x, arcsine.cdf(x), "r-", lw=2, label="Teoretyczny")
+axs[0, 1].set_title("Dystrybuanta empiryczna T_+")
+axs[0, 1].legend()
+
+# Histogram dla L
+axs[1, 0].hist(L, bins=50, density=True, alpha=0.6, color="coral", label="Empiryczny")
+axs[1, 0].plot(x, arcsine.pdf(x), "r-", lw=2, label="Teoretyczny")
+axs[1, 0].set_title("Histogram L")
+axs[1, 0].legend()
+
+# Dystrybuanty dla L
+axs[1, 1].hist(
+    L,
+    bins=50,
+    density=True,
+    cumulative=True,
+    alpha=0.6,
+    color="coral",
+    label="Empiryczny",
+)
+axs[1, 1].plot(x, arcsine.cdf(x), "r-", lw=2, label="Teoretyczny")
+axs[1, 1].set_title("Dystrybuanta empiryczna L")
+axs[1, 1].legend()
+
+# Histogram dla M
+axs[2, 0].hist(M, bins=50, density=True, alpha=0.6, color="coral", label="Empiryczny")
+axs[2, 0].plot(x, arcsine.pdf(x), "r-", lw=2, label="Teoretyczny")
+axs[2, 0].set_title("Histogram M")
+axs[2, 0].legend()
+
+# Dystrybuanty dla M
+axs[2, 1].hist(
+    M,
+    bins=50,
+    density=True,
+    cumulative=True,
+    alpha=0.6,
+    color="coral",
+    label="Empiryczny",
+)
+axs[2, 1].plot(x, arcsine.cdf(x), "r-", lw=2, label="Teoretyczny")
+axs[2, 1].set_title("Dystrybuanta empiryczna M")
+axs[2, 1].legend()
+
+plt.tight_layout()
+plt.show()
+
+
+\end{lstlisting}
+
+
+\begin{figure}[H]
+		
+
+				\centering
+				\includegraphics[scale=0.19]{T+.jpg}
+				\caption{Porównanie Wykresów Procesu $T_+$}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+\begin{figure}[H]
+                    \centering
+				\includegraphics[scale=0.19]{L.jpg}
+				\caption{Porównanie dla Procesu L.}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[scale=0.19]{M.jpg}
+				\caption{Porównanie dla Procesu M.}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+
+Na wykresach widzimy, jak teoria mówiąca nam o rozłożeniu danych łączy się z empirycznymi wynikami symulacji.
+\subsection{Wnioski.}
+Prawa arcsinusów dostarczają głębokich intuicji na temat rozkładu czasu związanego z pewnymi kluczowymi zdarzeniami w procesie Wienera. Te prawa są szczególnie użyteczne w analizie właściwości procesów stochastycznych i są ważnymi narzędziami w probabilistyce oraz analizie finansowej, gdzie procesy Wienera często modelują ceny lub inne zjawiska losowe.\\
+
+W finansach proces Wienera jest fundamentem modelowania dynamiki cen aktywów, np. w modelu Blacka-Scholesa do wyceny opcji. Jego własności, takie jak brak dryfu i skalowanie wariancji, czynią go użytecznym do modelowania nieprzewidywalnych zmian rynkowych, ale to temat do rozważenie na innym raporcie.
+
+
+\end{document}
+
