@@ -1,0 +1,601 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage[polish,english]{babel} % Para caracteres en español
+\usepackage[polish]{babel}
+\usepackage{polski}
+\usepackage[utf8]{inputenc}	% Para caracteres en español
+\usepackage[OT2,OT4]{fontenc}
+\usepackage{comment}
+\usepackage{amsfonts}
+
+\RequirePackage[numbers]{natbib}
+\usepackage[colorlinks=true]{hyperref}
+
+  \hypersetup{
+    pdftitle={Symulacje}, %%<--To wymienić 
+    pdfauthor={Karol Cieślik},
+    colorlinks,
+    urlcolor=blue,
+    filecolor=magenta,
+    citecolor=green, 
+    linkbordercolor={1 1 1}, % set to white
+    citebordercolor={1 1 1},  % set to white
+    urlbordercolor={ 1 1 1}  % set to white
+  } 
+\RequirePackage[hyperpageref]{backref} 
+    \renewcommand*{\backref}[1]{}  
+    \renewcommand*{\backrefalt}[4]{
+       \ifcase #1 
+          No cited.
+       \or
+          Cited on p. #2.
+       \else
+          Cited on pp. #2.
+       \fi}  
+
+\usepackage{amsmath,amsthm,amsfonts,amscd}%,amssymb}
+\usepackage{multirow,booktabs}
+\usepackage[table]{xcolor}
+\usepackage{fullpage}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{wrapfig}
+\usepackage{setspace}
+\usepackage{calc}
+\usepackage{graphicx}%
+\usepackage{mathtools, amsthm, amssymb}
+\usepackage{listings}%
+\usepackage{multicol}
+\usepackage{cancel}
+\usepackage[retainorgcmds]{IEEEtrantools}
+\usepackage[margin=3cm]{geometry}
+\usepackage{floatrow}
+\newlength{\tabcont}
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+%%Local definition
+ \def\bbE{{\mathbb E}}
+ \def\bbN{{\mathbb N}}
+        \def\cF{{\mathcal F}}
+        \def\cH{{\mathcal H}}
+        
+        \def\R{\Re}
+				\def\bD{{\mathbf D}}
+				\def\bE{{\mathbf E}}
+        \def\bP{{\mathbf P}}
+				\def\bT{{\mathbf T}}
+
+        \def\one{{\mathbb I}}
+\lstset{ %
+    language=Arduino,
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    stringstyle=\color{red},
+    commentstyle=\color{gray},
+    morecomment=[l][\color{magenta}]{\#},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    backgroundcolor=\color{lightgray!20},
+    frame=single,
+    breaklines=true,
+    captionpos=b,
+}				
+\newcommand{\bmalpha}{\boldsymbol \alpha}
+\newcommand{\bme}{\mathbf e}
+				
+\newcommand*{\doi}[1]{\href{http://dx.doi.org/#1}{doi: #1}}
+\newcommand*{\MR}[1]{\href{http://www.ams.org/mathscinet-getitem?mr=#1&return=pdf}{MR #1}}
+%\newcommand*{\ZBL}[1]{\href{http://www.zentralblatt-math.org/zmath/en/advanced/?q=an:#1&format=complete}{Zbl #1}}
+
+\title{Raport II}
+\author{Kinga Heda i Karol Cieślik}
+\date{Raport}
+
+
+\newcommand\course{MST sem. IV}	% <-- nombre del curso
+\newcommand\semester{lato 2023/2024}  % <-- semestre
+\newcommand\asgnname{2}         % <-- numero o subtítulo de la tarea
+\newcommand\yourname{}  % <-- nombre
+\newcommand{\vect}[1]{\overline{#1}} % si se quiere cambiar a vector con flecha solo hay que sustituir boldsymbol por vec.
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}	% para denotar la norma euclidiana
+\theoremstyle{definition}
+\newtheorem{definition}{Definicja}[section]
+\newtheorem{reg}{Regla}
+\newtheorem{lemma}{Lemat}
+\newtheorem{theorem}{Twierdzenie}
+\newtheorem{remark}{Komentarz}[section]
+\newtheorem{example}{Przykład}[section]
+
+
+\newtheorem{ejer}{Zadanie}[section]%{EJERCICIO}
+\newtheorem{solution}{Odp.}[section]%{Solución}
+
+\pagestyle{fancyplain}
+\headheight 32pt
+\lhead{\yourname\ \vspace{0.1cm} \\ \course}
+\chead{\textbf{\Large Raport Nr. II}}
+\rhead{2024/06/19}
+\cfoot{Strona \thepage \hspace{1pt} na \pageref{LastPage} \vspace{3mm} \\ \footnotesize \textcolor{gray}{Raport opracowali Kinga Heda i Karol Cieślik kurs \emph{Statystyka stosowana.}}
+}
+\textheight 580pt
+\headsep 10pt
+\footskip 40pt
+\topmargin = 7pt
+
+
+
+\begin{document}
+\selectlanguage{polish}
+\pagenumbering{roman}
+\setcounter{page}{1} %%This command starts the numerations of pages
+\maketitle
+
+%\newpage
+
+\tableofcontents
+
+\include{Zadania/Zadania0ASKSz}
+%\include{Lecture0Z}
+
+\include{Zadania/Zadania1ASKSz}
+
+
+\include{Literatura}
+\section{Wstęp.}
+W niniejszej pracy przedstawimy wyniki analizy statystycznej przeprowadzonej na dwóch próbach pochodzących z populacji  o rozkładzie normalnym(sprawdzono). Analiza ta ma na celu weryfikację różnych hipotez dotyczących parametrów tych rozkładów na poziomie istotności $\alpha = 0.05.$\\
+
+Zweryfikujemy trzy hipotezy dotyczące średniej oraz wariancji. Dla każdej z tych hipotez zostaną narysowane obszary krytyczne oraz obliczone p-wartości. Zwrócimy uwagę na różnice w zależności od dobrania poziomu istotności $\alpha$.\\
+
+Symulacyjne wyznaczymy również prawdopodobieńswto wystąpienia błędów I i II rodzaju później, dla hipotez z zadań 1 i 2, zostaną symulacyjnie wyznaczone prawdopodobieństwa popełnienia błędów pierwszego rodzaju oraz wyznaczymy moc testów, czyli prawdopodobieństwo prawidło- wego odrzucenia fałszywej hipotezy zerowej.\\
+
+Wszystkie analizy zostaną przeprowadzone z użyciem odpowiednich narzędzi statystycznych, a wyniki przedstawione w postaci graficznej oraz tabelarycznej. Naszym celem jest zrozumienie i interpretacja wyników testów statystycznych dla podanych hipotez.
+\\
+
+\subsection{Definicje}
+
+\textbf{Hipoteza zerowa} - to twierdzenie, które zakłada brak efektu, różnicy lub związku, ponieważ zakłada stan ”braku zmian” lub ”braku różnicy”. Przykładem może być stwierdzenie, że średnia w populacji wynosi określoną wartość, np: $\mu = 1.5.$\\
+
+\textbf{Hipoteza alternatywna} - jest twierdzeniem przeciwnym do hipotezy zerowej. Zakłada istnienie efektu, różnicy lub związku, który chcemy wykazać. Może to być twierdzenie, że średnia w populacji jest różna od określonej wartości, np: $H_0 : \mu  \neq 1.5$ (alternatywa dwustronna), lub $H_2: \mu > 1.5$ (alternatywa prawostronna) i $H_3: \mu < 1.5$ (alternatywa lewostronna).
+
+\section{Zad. 1}
+W pierwszym zadaniu przeprowadzimy analizę danych celem weryfikacji hipotezy zerowej względem trzech hipotez alternatywnych na poziomie istotności $\alpha = 0.05.$ Wiemy, że pobrana próbka X pochodzi z rozkładu normalnego $N(\mu,\sigma)$ o nieznanej średniej $\mu$ i znanym odchyleniu standardowym $\mu = 0.2$. Hipotezę zerową określamy jako:
+
+\begin{equation}
+    H_0: \mu = 1.5.
+\end{equation} 
+
+
+Natomiast nasze hipotezy alternatywne to:
+\begin{enumerate}
+    \centering
+    \item $H_1: \mu \neq 1.5,$
+    \item $H_2: \mu > 1.5,$
+    \item $H_2: \mu < 1.5.$
+\end{enumerate}
+
+Najpierw należy przeprowadzić standaryzacje statystyki $\bar X$, pod warunkiem $H_0, Z~N(0,1).$ Definiujemy jako:
+\begin{equation}
+    Z= \frac{\bar X - \mu_0}{\sigma / \sqrt{n}}
+\end{equation} 
+\\
+
+Zatem u nas szukana statystyka wynosi $Z=\frac{1.455 - 1.5}{0.2 / 1000}\approx -7.041$
+\subsection{Badane obszary}
+
+Rozważamy więc test hipotezy dwustronnej na poziomie istotności $ \alpha = 0.05,$
+który określa prawdopodobieństwo popełnienia błedu pierwszego rodzaju, czyli
+odrzucenia prawdziwej hipotezy zerowej $H_0$. W przypadku testu dwustronnego,
+ta szansa jest równomiernie rozdzielona na dwa ogony rozkładu normalnego,
+więc każdy ogon ma poziom istotności $\frac{\alpha}{2}$. Wartości krytyczne $z_\frac{\alpha}{2}$ i $z_1_-_\frac{\alpha}{2}$ to wartości odpowiadające punktom $\alpha$ i $1 -\alpha$ w rozkładzie normalnym standardowym.\\
+
+Zbiór wszystkich wartości statystyki Z, dla których odrzucamy hipotezę zerową nazywamy \textbf{obszarem krytycznym}, który dla hipotezy dwustronnej zdefiniowany jest jako:
+
+\begin{center}
+    $C=\{Z:Z < z_\frac{\alpha}{2} \ lub \  Z > z_{1-\frac{\alpha}{2}}\}$
+\end{center}
+
+gdzie $Z_1_-_\alpha$ jest oczywiście kwantylem standardowego rozkładu normalnego
+rzędu $ 1 -\alpha$. Określiliśmy jego wartość jako $z_1_-_\alpha = z_0_._9_7_5 \approx 1.96.$ A zatem nasz obszar krytyczny możemy zapisać jako:
+\begin{center}
+    $C=\{Z:Z < -1.96 \ lub \  Z > 1.96\}$
+\end{center}
+
+Następnie przeprowadzamy test hipotezy prawostronnej na tym samym poziomie istotności. W przypadku tego testu szansa odrzucenia hipotezy zerowej jest równe szansie, że statystyka \(Z\) należy do prawego ogonu rozkładu normalnego, ograniczonego przez wartość krytyczną \(z_{1 − \alpha} = z_{0.95}\), czyli kwantyl rzędu 0.95 rozkładu standardowego. Jego wartość równa jest \(z_{0.95} \approx 1.645. \)
+
+Obszar krytyczny dla tej statystyki możemy zapisać jako:
+\[
+C = \{Z : Z > z_1_-_{\alpha}\} = \{Z : Z > z_{0.95}\} = \{Z : Z > 1.645\}
+\]
+
+W przypadku testu hiopotezy lewostronnej na poziomie istotności  \(\alpha = 0.05\) badamy czy statystyka \(Z\) znajduje się w lewym ogonie rozkładu normalnego, który ograniczony jest wartość krytyczną \(z_{\alpha} = z_{0.05}\), czyli kwantyl rzędu 0.05 rozkładu standardowego. Wartość tego kwantylu wynosi \(z_{0.05} \approx -1.645. \)
+
+Obszar krytyczny dla tej statystyki możemy zapisać jako:
+\[
+C = \{Z : Z < z_{\alpha} \} = \{Z : Z < z_{0.05}\} = \{Z : Z < -1.645\}
+\]
+
+\subsection{Wizulizacja}
+Dzięki zdefiniowanym obszarom krytycznym stwierdzamy, że:
+\begin{itemize}
+    \item w przypadku hipotezy dwustronnej odrzucamy hipotezę zerową  na rzecz hipotezy alternatywnej, ponieważ \(Z = - 7.041 < - 1.96.\), czyli statystyka \(Z\) zawiera się w obszarze krytycznym,
+    \item w przypadku hipotezy prawostronnej odrzucamy hipotezę alternatywną, ponieważ \(Z = - 7.041  \cancel{>}  - 1.96.\), 
+    \item hipoteza lewostronna również zastępuje hipotezę zerową jako hipoteza alternatywna, ponieważ \(Z =  -7.041 <
+- 1.645.\)
+\end{itemize}
+
+Poniższe wykresy przedstawiają interesujace nas zagadnienie:
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=\linewidth]{staty1.png}
+				\caption{Statystyka Z względem opisanych obszarów krytycznych}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+
+\subsection{P-wartości}
+Dla badanych hipotez obliczymy p-wartości, czyli najmniejszy poziom istotności \(\alpha\), przy którym rozważana wartość statystyki prowadzi do odrzucenia hipotezy zerowej. Dla hipotezy dwustronnej szukaną wartość znajdujemy obliczając:
+
+\[
+p = 2P(Z \geq |z|) = 2(1 - P(Z \leq |z|)) = 2(1 - \phi(|z|))
+\]
+
+gdzie \(\phi(x)\) jest dystrybuantą rozkładu normalnego. Obliczając tę statystykę otrzymujemy \(p = 1.902 * 10^{-12}\). Oznacza to, że przy poziomie istotności \(\alpha < p = 1.902 * 10^{-12}\) hipoteza zerowa zostałaby przyjęta.
+
+Dla hipotezy prawostronnej p-wartość otrzymujemy korzystając ze wzoru:
+
+\[
+p = P(Z \geq z) = 1 - P(Z \leq z) = 1 - \phi(z) = 0.9999999999990488 \approx 1
+\]
+
+oznacza to bardzo małą istotność statystyczną, co sugeruje brak podstaw do odrzucenia hipotezy zerowej przy standardowym poziomie istotności.
+
+P-wartość dla hipotezy lewostronnej otrzymamy korzystając ze wzoru:
+
+\[
+p = P(Z \leq z) = \phi(z) \approx 9.512 * 10^{-13}.
+\]
+
+Otrzymujemy bardzo niską wartość, co oznacza, że hipoteza alternatywna dla większości przypdków \((\alpha > p)\) hipoteza zerowa zostałaby zastąpiona hipotezą alternatywną.
+
+\subsection{Poziomy istotności}
+Powyższa analiza została przeprowadzona na poziomie istotności \(\alpha = 0.05.\) Przyjrzymy się teraz, jaki wpływ ma dobór poziomu istotności na wyniki testowania hipotezy zerowej przeciwko trzem hipotezom alternatywnym. W tym celu porównamy nasze wyniki z wynikami dla zmniejszonego \(\alpha = 0.01\) oraz zwiększonego \(\alpha = 0.1\). Dla każdego z tych przypadków przeprowadzimy analogiczne obliczenia, jak w przykładzie wyżej.
+
+Rozważmy przypadek poziomu istotności \(\alpha = 0.01\). Najpierw znajdujemy kwantyle rzędu 0.995 oraz 0.99.
+\[
+z_1_-_{\alpha} = z_{0.99}  = - z_{\alpha} = - z_{0.01} = 2.326
+\]
+\[
+z_1_-_\frac{\alpha}{2} = z_{0.995} = - z_\frac{\alpha}{2} = -z_{0.005} = 2.576
+\]
+Na ich podstawie określamy obszary krytyczne kolejno dla hipotez dwustronnej, prawostronnej i lewostronnej. 
+\[
+C=\{Z:Z < z_\frac{\alpha}{2} \ lub \  Z > z_{1-\frac{\alpha}{2}}\} = \{Z:Z < -2.576 \ lub \  Z > 2.576\}
+\]
+
+\[
+C = \{Z : Z > z_1_-_{\alpha}\} = \{Z : Z > 2.326\} 
+\]
+
+\[
+C = \{Z : Z < z_{\alpha} \} = \{Z : Z < -2.326\}
+\]
+Ich wizualizajcę oraz porównanie z poziomem istotności $\alpha = 0.05$ przedstawiają poniższe wykresy:
+
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=0.9\linewidth]{staty2.png}
+				\caption{Porównanie obszarów krytycznych dla poziomów istotności $\alpha = 0.05$ i $\alpha = 0.01$}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+Gdy zmniejszamy poziom istotności $\alpha$, obszary krytyczne dla każdej hipotezy stają się mniejsze. W rezultacie, prawdopodobieństwo, że statystyka testowa znajdzie się w obszarze krytycznym, również się zmniejsza. Oznacza to, że rzadziej będziemy odrzucać hipotezę alternatywną, a częściej akceptować hipotezę zerową. Bezpośrednim skutkiem jest zmniejszenie prawdopodobieństwa popełnienia błędu I rodzaju, czyli odrzucenia prawdziwej hipotezy zerowej. Jednakże, w miarę jak maleje prawdopodobieństwo błędu I rodzaju, wzrasta prawdopodobieństwo popełnienia błędu II rodzaju, czyli odrzucenia prawdziwej hipotezy alternatywnej. Wyniki wszystkich przeprowadzonych wcześniej testów pozostają bez zmian.
+
+W przypadku poziomu istotności $\alpha = 0.1$ powtarzamy wszystkie kroki. Zaczynamy od liczenia kwantyli rzędy 0.9 oraz 0.95.
+\[
+z_1_-_{\alpha} = z_{0.9}  = - z_{\alpha} = - z_{0.1} = 1.282
+\]
+\[
+z_1_-_\frac{\alpha}{2} = z_{0.95} = - z_\frac{\alpha}{2} = -z_{0.05} = 1.645
+\]
+Pozwala nam to na określenie obszarów krytycznych przy rozważanym poziomie istotnosci dla hipotez kolejno dwustronnej, prawostronnej i lewostronnej.
+\[
+C=\{Z:Z < z_\frac{\alpha}{2} \ lub \  Z > z_{1-\frac{\alpha}{2}}\} = \{Z:Z < -1.645 \ lub \  Z > 1.645\}
+\]
+
+\[
+C = \{Z : Z > z_1_-_{\alpha}\} = \{Z : Z > 1.282\} 
+\]
+
+\[
+C = \{Z : Z < z_{\alpha} \} = \{Z : Z < -1.282\}
+\]
+Ich wizualizajcę oraz porównanie z poziomem istotności $\alpha = 0.05$ przedstawiają poniższe wykresy:
+
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=0.9\linewidth]{staty3.png}
+				\caption{Porównanie obszarów krytycznych dla poziomów istotności $\alpha = 0.05$ i $\alpha = 0.1$}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+
+Gdy zwiększamy poziom istotności $\alpha$, obszary krytyczne dla każdej hipotezy rozszerzają się. W efekcie rośnie prawdopodobieństwo, że statystyka testowa znajdzie się w tych obszarach krytycznych. To oznacza, że częściej będziemy odrzucać hipotezę zerową i rzadziej akceptować hipotezę alternatywną. Skutkiem tego jest zwiększenie prawdopodobieństwa popełnienia błędu I rodzaju, czyli odrzucenia prawdziwej hipotezy zerowej. Jednakże, w miarę jak wzrasta prawdopodobieństwo błędu I rodzaju, zmniejsza się prawdopodobieństwo popełnienia błędu II rodzaju, czyli nieodrzucenia prawdziwej hipotezy alternatywnej. Wyniki wszystkich przeprowadzonych wcześniej testów pozostają takie same.
+
+\section{Zad. 2}
+W następnym zadaniu wiemy, że pobrana próbka pochodzi z rozkładu normalnego $N(0.2,\sigma^2)$.Tak samo jak w pierwszym zadaiu zweryfikujemy trzy hipotezy. Hipotezę zerową określamy jako:
+
+\begin{equation}
+    H_0: \sigma^2 = 1.5
+\end{equation} 
+
+
+Natomiast hipotezy alternatywne to:
+\begin{enumerate}
+    \centering
+    \item $H_1: \sigma^2 \neq 1.5,$
+    \item $H_2: \sigma^2 > 1.5,$
+    \item $H_2: \sigma^2 < 1.5.$
+\end{enumerate}
+
+Rozważmy test dla wariancji w rodzinie rozkładów normalnych. Statystyka:
+\begin{center}
+    $\chi^2=\frac{(n-1)s^2}{\sigma^2_0}, gdzie \ s^2=\frac{1}{n-1}\sum^n_i_=_1 (X_i - \hat{X})^2$
+\end{center}
+\\
+
+jest estymatorem nieobciążonym wariancji, przy prawdziwości hipotezy zerowej ma rozkład $\chi^2 \ z \  n - 1$ stopniami swobody. Dla naszych danych mamy:\\
+\begin{enumerate}
+    \item n=1000
+    \item $s^2 \approx 1.6681$
+    \item $\sigma^2_0 = 1.5$
+\end{enumerate}
+\\
+A obliczona na podstawie tych wartości statystyka $\chi^2$ wynosi 1108.7487
+
+\subsection{Badane obszary}
+Wszystkie przypadki rozpatrujemy na poziomie istotności $\alpha = 0.05$. W przypadku pierwszej hipotezy alternatywnej, gdzie $\sigma ^2 \neq 1.5$ zbiór krytyczny testu ma postać:
+\[
+C = \left\{x^2 : x^2 \leq \chi^2_{\frac{\alpha}{2}, n-1} \text{ lub } x^2 \geq \chi^2_{1 - \frac{\alpha}{2}, n-1}\right\}
+\]
+gdzie $x^2 = \frac{(n-1)s^2}{\sigma_0^2}$, a $\chi^2_{\frac{\alpha}{2}$ i $\chi^2_{1 - \frac{\alpha}{2}$ to kwantyle rozkładu $\chi^2$ o $n-1$ stopniach swobody.
+
+Korzystając z wbudowanych bibliotek w python otrzymujemy:
+\[
+C = (-\infty, 913.3010] \cup [1088.4871, \infty)
+\]
+
+Dla hipotezy alternatywnej $\sigma ^2 > 1.5$ zbiór krytyczny możemy wyrazić następująco:
+\[
+C = \{x^2: x^2 \geq \chi^2_{1 - \alpha, n-1}\}
+\]
+co daje nam zbiór:
+\[
+C = [1073.6427, \infty)
+\]
+
+Definujemy również zbiór keytyczny dla hipotezy $\sigma ^2 < 1.5$:
+\[
+C = \{x^2: x^2 \leq \chi^2_{\alpha, n-1}\} = (-\infty, 926.6312]
+\]
+
+\subsection{Wizualizacja}
+Powyżej zdefiniowane zbiory krytyczne wraz ze statystyką $\chi^2$ przedstawiają poniższe wykresy.
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=\linewidth]{staty4.png}
+				\caption{Statystyka $\chi^2$ względem opisanych zbiorów krytycznych}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+
+\newpage
+Dzięki wizualizacji i zdefiniowanym zbiorom krytycznym wnioskujemy, że:
+\begin{itemize}
+    \item w przypadku hipotezy dwustronnej odrzucamy hipotezę zerową  na rzecz hipotezy alternatywnej, ponieważ  statystyka \(\chi^2\) zawiera się w obszarze krytycznym, przyjmujemy $\sigma^2 \neq 1$,
+    \item dla hipotezy prawostronnej również odrzucamy hipotezę zerową i przyjmujemy $\sigma^2 > 1$,
+    \item w przyoadku hipotezy lewostronnej statystyka \(\chi^2\) nie mieści się w obszarze krytycznym, czyli przyjmuje hipotezę zerową i $\sigma^2 = 1$.
+\end{itemize}
+
+\subsection{P-wartości}
+Dla przedstawionych hipotez wyliczymy p-wartości za pomocą wbudowanych bibliotek w python. Hipoteza zerowa zostaje odrzucona na rzecz danej hipotezy alternatywnej, jeśli poziom istotności $\alpha$ jest większy bądź równy uzyskanej p-wartości. Dla hipotezy dwustronnej tę wartość zdefiniowaną mamy jako:
+\[
+p = 2min(P(\chi^2_n_-_1) \leq x, 1 - P(\chi^2_n_-_1) < x)  
+\]
+Otrzymujemy $p = 0.015$, czyli hipoteza zerowa zostanie odrzucona dla każdego poziomu istotności $\alpha < 0.015$.
+
+Dla hipotezy prawostronnej otrzymujemy $p = 0.0075$, zgodnie z definicją:
+\[
+p = 1 - P(\chi^2_n_-_1) < x)
+\]
+
+W przypadku hipotezy jednostronnej mamy:
+\[
+p = P(\chi^2_n_-_1) \leq x = 0.9925
+\]
+
+\subsection{Poziomy istotności}
+Analizując wyniki na poziomie istotności $\alpha = 0.05$, teraz przeanalizujemy, jak różny wybór poziomu istotności wpływa na rezultaty testowania hipotez. Przeprowadzimy porównanie wyników dla trzech różnych poziomów istotności: zmniejszonego $\alpha = 0.01$, standardowego $\alpha = 0.05$ oraz zwiększonego $\alpha = 0.1$.
+
+Dla każdego z tych przypadków dokonamy analogicznych obliczeń jak przedstawione powyżej, aby lepiej zrozumieć, jak poziom istotności wpływa na nasze decyzje dotyczące odrzucenia lub nie odrzucenia hipotezy zerowej na rzecz hipotez alternatywnych.
+
+Rozważmy przypadek poziomu istotności \(\alpha = 0.01\). Dla znalezienia szukanych obszarów krytycznych potrzebujemy wyznaczyć kwantyle rzędu 0.995, 0.005, 0.99 oraz 0.01,. 
+\[
+\chi^2_{1 - \frac{\alpha}{2}, n - 1} = \chi^2_{0.995, n - 1} = 1117.8905
+\]
+
+\[
+\chi^2_{\frac{\alpha}{2}, n - 1} = \chi^2_{0.005, n - 1} = 887.6211
+\]
+
+\[
+\chi^2_{1 - \alpha, n - 1} = \chi^2_{0.99, n - 1} = 1105.9170
+\]
+
+\[
+\chi^2_{\alpha, n - 1} = \chi^2_{0.01, n - 1} = 897.9645
+\]
+
+Co daje nam zapisać następujące obszary krytyczne odpowiednio dla hipotezy dwustronnej, prawostronnej i lewostronnej:
+\[
+C = (-\infty, 887.6211]  \cup [1117.8905, \infty)
+\]
+
+\[
+C = [1105.9170, \infty)
+\]
+
+\[
+C = (-\infty, 897.9645]
+\]
+
+Ich wizualizację przedstawiamy i porównujemy z poziomem istotności $\alpha = 0.05$ na poniższych wykresach:
+
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=\linewidth]{staty5.png}
+				\caption{Statystyka $\chi^2$ względem opisanych obszarów krytycznych}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+
+Zbadamy również jak zwiększenie poziomu istotności wpłynie na obszary krytyczne. Ponownie wyznaczamy interesujące nas kwantyle rzędu 0.1, 0.9, 0.05 oraz 0.95 i na ich podstawie wyznaczamy zbiory krytyczne dla hipotez kolejno dwustronnej, prawostronnej oraz lewostronnej:
+\[
+C = (-\infty, 926.6312]  \cup [1073.6427, \infty)
+\]
+
+\[
+C = [1056.6952, \infty)
+\]
+
+\[
+C = (-\infty, 942.1612]
+\]
+
+W celu zobrazowania różnic przy zwiększonym poziomie istotności wizualizujemy i porównujemy oba na poniższych wykresach:
+\begin{figure}[H]
+			\centering
+
+				\centering
+				\includegraphics[width=\linewidth]{staty6.png}
+				\caption{Statystyka $\chi^2$ względem opisanych obszarów krytycznych}
+				\label{fig:zdjecie1}
+			\hfill
+		\end{figure}
+
+Zauważamy, że wraz ze wzrostem poziomu ufności rośnie obszar krytyczny dla wszystkich hipotez, a ze spadkiem poziomu ufności obserwujemy mniejszy obszar krytyczny i maleje prawdopodbieństwo odrzucenia hipotezy zerowej. Dla naszych przypadków zmiana następuje tylko w hipotezie dwustronnej dla poziomu ufności $\alpha = 0.01$, ponieważ w tym przypadku nie odrzucamy hipotezy zerowej na rzecz alternatywnej. W pozostałych przypadkach pozostaje sytucja jak w przypadku $\alpha = 0.05$, mimo, że zmieniają się obszary krytyczne.
+
+\section{Zad. 3}
+W ostatnim zadaniu zajmiemy się wyznaczeniem prawdopodobieństwa popełnienia błędów I i II rodzaju dla hipotez z poprzednich zadań. W tym celu wykonamy symulacje, które będą aproksymować te wartości. Wyznaczone prawdopodobieństwa posłużą nam następnie do obliczenia mocy testów.\\
+
+\textbf{Błędem pierwszego rodzaju} nazywamy odrzucenie prawdziwej hipotezy zerowej na rzecz (fałszywej) hipotezy alternatywnej. Prawdopodobieństwo popełnienia tego błędu jest równe wcześniej poznanemu poziomowi istotności $\alpha$.\\
+
+\textbf{Błąd drugiego rodzaju} nazywamy moment odrzucenia prawdziwej hipotezy alternatywnej i przyjęcia fałszywej hipotezy zerowej. Możemy je obliczyć jako $P = 1 - \beta$, gdzie $\beta$ jest zdefinowana jako moc testu. Tym samym moc testu określa także prawdopodobieństwo odrzucenia fałszywej hipotezy zerowej na rzecz prawdziwej hipotezy alternatywnej.\\
+
+\subsection{Błąd pierwszego rodzaju}
+ Aby symulacyjnie oszacować błąd pierwszego rodzaju, należy wygenerować próbkę losową z rozkładu normalnego zgodnie z założeniami hipotezy zerowej (średnia $\mu = 1.5$ oraz odchylenie standardowe $\sigma = 0.2$) i sprawdzić, jak często odrzucamy hipotezę zerową.
+
+Przeprowadziliśmy procedurę dla trzech poziomów istotności: $\alpha_1 = 0.05$, $\alpha_2 = 0.01$ i $\alpha_3 = 0.1$, oraz dla trzech różnych hipotez: dwustronnej, prawostronnej, lewostronnej. Wyniki symulacji przedstawiono w tabeli 1.
+
+\newpage
+\begin{table}[h!]
+    \centering
+    \caption{Prawdopodobieństwo błędu I rodzaju}
+    \begin{tabular}{cccc}
+        \toprule
+        Poziom istotności & Hipoteza dwustronna & Hipoteza prawostronna & Hipoteza lewostronna \\
+        \midrule
+        $\alpha_1 = 0.05$ & 0.051 & 0.048 & 0.054 \\
+        $\alpha_2 = 0.01$ & 0.010 & 0.011 & 0.019 \\
+        $\alpha_3 = 0.1$ & 0.103 & 0.099 & 0.118 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Z wyników symulacji wynika, że oszacowane prawdopodobieństwo błędu pierwszego rodzaju jest bardzo zbliżone do teoretycznych wartości dla wszystkich trzech poziomów istotności i rozważanych hipotez. 
+
+\subsection{Błąd drugiego rodzaju}
+Aby symulacyjnie oszacować błąd drugiego rodzaju, należy wygenerować próbkę losową z rozkładu normalnego zgodnie z założeniami hipotezy alternatywnej \(H_1\) (ale blisko wartości przyjętych w \(H_0\)) i sprawdzić, jak często przyjmujemy hipotezę zerową.
+
+Przeprowadziliśmy tę procedurę dla jednego poziomu istotności $\alpha_1 = 0.05$ oraz sześciu różnych wartości średniej $\mu$: $\mu_1 = 1.47$, $\mu_2 = 1.48$, $\mu_3 = 1.49$, $\mu_4 = 1.51$, $\mu_5 = 1.52$, $\mu_6 = 1.53$. Wyniki symulacji zostały przedstawione w tabeli 2.
+
+\begin{table}[h!]
+    \centering
+    \caption{Błąd drugiego rodzaju II}
+    \begin{tabular}{cccc}
+        \toprule
+        $\sigma^2$ & Hipoteza dwustronna & Hipoteza prawostronna & Hipoteza lewostronna \\
+        \midrule
+        1.47 & 0.919 & - & 0.889 \\
+        1.48 & 0.945 & - & 0.909 \\
+        1.49 & 0.957 & - & 0.937 \\
+        1.51 & 0.945 & 0.924 & - \\
+        1.52 & 0.933 & 0.925 & - \\
+        1.53 & 0.924 & 0.881 & - \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Widzimy, że błąd drugiego rodzaju jest największy dla wartości bliskich $\sigma^2_0 = 1.5$. Jest to logiczne, ponieważ w takich przypadkach rzeczywista wartość parametru jest bardzo zbliżona do wartości przyjętej w hipotezie zerowej. W konsekwencji istnieje duże prawdopodobieństwo, że hipoteza zerowa zostanie zaakceptowana zamiast hipotezy alternatywnej.
+
+
+Dla otrzymanych wartości prawdopodobieństwa popełnienia błędu rodzaju
+II wyznaczymy także moce testu ze wzoru $\beta = 1 - p$. Wyniki obliczeń
+zawarliśmy w tabeli 3.
+
+
+\begin{table}[h!]
+    \centering
+    \caption{Moce testu}
+    \begin{tabular}{cccc}
+        \toprule
+        $\mu$ & Hipoteza dwustronna & Hipoteza prawostronna & Hipoteza lewostronna \\
+        \midrule
+        1.47 & 0.081 & - & 0.111 \\
+        1.48 & 0.055 & - & 0.091 \\
+        1.49 & 0.043 & - & 0.063 \\
+        1.51 & 0.055 & 0.076 & - \\
+        1.52 & 0.067 & 0.075 & - \\
+        1.53 & 0.076 & 0.119 & - \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Wnioski.}
+
+Wykorzystując wiedzę o testach statystycznych oraz wykorzystując odpowiednie narzędzia informatyczne dokonaliśmy szczegółowej analizy próbek z rozkładu normalnego $N(\mu, \sigma^2)$ pod kątem weryfikacji hipotez alternatywnych.\\
+
+W zadaniu pierwszym przeanalizowaliśmy próbę pochodzącą z populacji normalnej o nieznanej średniej $\mu$ i o znanym odchyleniu standardowym $\sigma = 0.2 $, a następnie zweryfikowaliśmy trzy hipotezy dotyczące średniej populacji.\\
+\\
+
+Dla każdej z hipotez wyznaczyliśmy odpowiednie obszary krytyczne oraz obliczono wartości $p$. Wyniki testów statystycznych przedstawiliśmy graficznie, odpowiednio wizualizując obszary krytyczne. Zmiana poziomu istotności $\alpha$ wpływała na szerokość obszarów krytycznych, zwiększając lub zmniejszając prawdopodobieństwo odrzucenia hipotezy zerowej.\\
+
+\\
+W zadaniu drugim przeanalizowaliśmy próbę pochodzącą z populacji normalnej o nieznanej wariancji $\sigma^2$ i znanej średniej $\mu= 0.2.$ Na poziomie istotności $\alpha = 0.05$ zweryfikowaliśmy trzy hipotezy dotyczące wariancji populacji.\\
+
+Podobnie jak w zadaniu pierwszym, dla każdej hipotezy wyznaczyliśmy odpowiednie obszary krytyczne oraz obliczyliśmy wartości $p$. Obszary krytyczne były określone przez rozkład $\chi^2$. Analiza wykazała wpływ zmiany poziomu istotności $\alpha$ na obszary krytyczne.\\
+
+W zadaniu trzecim przeprowadziliśmy symulacje szacująca prawdopodobieństw popełnienia błędów I i II rodzaju oraz mocy testów dla hipotez z zadań 1 i 2.\\
+
+Analiza wyników symulacji wykazała, że zwiększenie poziomu istotności $\alpha$ prowadziło do wzrostu prawdopodobieństwa błędu I rodzaju, jednocześnie zmniejszając błąd II rodzaju i zwiększając moc testu.\\
+
+Przeprowadzone analizy i symulacje dostarczyły informacji na temat wpływu poziomu istotności na weryfikację hipotez średniej i wariancji w populacjach normalnych. Graficzne przedstawienie obszarów krytycznych oraz obliczenie wartości $p$ umożliwiło zrozumienie procesu testowania hipotez.\\
+Symulacyjne podejście do oszacowania błędów I i II rodzaju oraz mocy testów pozwoliło na ocenę efektywności zastosowanych testów statystycznych.
+Zmiana poziomu istotności $\alpha$ ma istotny wpływ na wyniki testów statystycznych, co powinno być uwzględnione przy projektowaniu i interpretacji testów hipotez. Ostateczne wnioski podkreślają znaczenie odpowiedniego doboru poziomu istotności w kontekście specyficznych zastosowań i celów analizy statystycznej.\\
+
+
+
+\end{document}
+
